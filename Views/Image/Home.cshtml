@@ -1,0 +1,120 @@
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model HomeViewModel
+@section Styles
+{
+    <link rel="stylesheet" href="~/stylesheets/Home.css">
+    <link rel="stylesheet" href="~/stylesheets/Hoverable.css"/>
+}
+@{
+    var isUserAuthenticated = User.Identity?.IsAuthenticated is true;
+    const int PageSize = 21;
+}
+
+<div id="body" class="container-fluid">
+    <div class="row justify-content-center align-items-center">
+        <div>
+            <div class="text-center">
+                <p class="label-lg">Your images</p>
+                <hr/>
+            </div>
+            @if (Model.UserImages.Any())
+            {
+                <div class="image-container">
+                    @foreach (var image in Model.UserImages)
+                    {
+                        <div class="user-image-container">
+                            <img src="@image.Url" alt="Your image slide" class="img-fluid"/>
+                        </div>
+                    }
+                </div>    
+            }
+            else
+            {
+                <div class="text-center">
+                    <p class="label text-light-gray fs-2">You have not uploaded any images at the moment. Do it with the button below!</p>
+                </div>
+            }
+            <form method="post" asp-action="UploadImages" enctype="multipart/form-data" class="text-center">
+                <input class="btn btn-primary" type="file" accept="image/*" name="images" onchange="this.form.submit()" @(isUserAuthenticated ? "multiple" : string.Empty)/>
+            </form>
+            @if (!isUserAuthenticated)
+            {
+                <div class="text-center">
+                    <p class="label-sm text-light-gray"><a asp-controller="Account" asp-action="Register" class="d-inline text-primary">Register</a> to upload multiple images at once</p>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+    @if (Model.CommunityImages.Any())
+        {
+            <p class="label-lg text-center">Community images</p>
+            <hr/>
+            <div id="gallery" class="grid-container">
+                @foreach (var image in Model.CommunityImages)
+                {
+                    <div class="grid-item col hoverable-image-container w-100">
+                        <img class="w-100 h-100" src="@image.Url" alt="Community image"/>
+                        <div class="overlay d-flex align-items-center justify-content-center">
+                            <p class="overlay-content text-light">@image.Description</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        
+            @if (Model.CommunityImages.Count > PageSize)
+            {
+                @Html.PagedListPager(Model.CommunityImages, page => Url.Action("Home", values: new { page, pageSize = PageSize } ), new PagedListRenderOptions
+                {
+                    LiElementClasses = new[] { "page-item" },
+                    PageClasses = new[] { "page-link" },
+                    ActiveLiElementClass = "page-item-active",
+                    UlElementClasses = new[] { "pagination justify-content-center" }
+                })   
+            }
+        }
+    else
+    {
+        <div class="text-center">
+            <p class="label text-light-gray fs-2">At the moment there are no pictures from the community. Be the first!</p>
+        </div>
+    }
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(() => {
+            $('.image-container').slick({
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                adaptiveHeight: false,
+                arrows: false
+            });
+           
+            function adjustToLg() {
+                $("#gallery").addClass('grid-container').removeClass('row').removeClass('row-cols-1').removeClass('g-4');
+                }
+                function adjustToMd() {
+$("#gallery").removeClass('grid-container').addClass('row').addClass('row-cols-1').addClass('g-4');
+                }
+                function adjust() {
+                    const lgBreakpoint = 992;                
+                    if (window.innerWidth > lgBreakpoint) adjustToLg();
+                    else adjustToMd();
+                }
+                
+                adjust();
+            $(window).on('resize', () => {
+                adjust();
+                });
+
+           
+        });
+    </script>
+}

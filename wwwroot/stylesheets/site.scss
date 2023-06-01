@@ -1,0 +1,90 @@
+@import "variables";
+html, body {
+  background-color: $dark;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.slick-slider {
+  padding: 0 !important;
+}
+
+@import "variables";
+.label {
+  box-sizing: border-box;
+  color: $primary;
+  margin: 0;
+}
+
+.label-sm {
+  @extend .label;
+  font-size: $font-size-sm;
+}
+
+.label-lg {
+  @extend .label;
+  font-size: 3rem;
+}
+
+hr {
+  width: 50%;
+  border: 2px solid limegreen;
+  background-color: limegreen;
+  height: 5px;
+  margin: 0 auto 20px auto;
+}
+
+@import "mixins/breakpoints";
+@include media-breakpoint-up(lg) {
+  div:has(> .image-container) {
+    width: 87.9%;
+  }
+};
+
+.slick-dots li.slick-active button:before {
+  color: $light !important;
+}
+
+header {
+  height: $header-height;
+}
+
+#body {
+  margin-top: $header-height;
+}
+
+nav a {
+  color: $light !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease-in-out;
+  font-size: $font-size-lg;
+
+  &:hover {
+    color: $primary !important;
+  }
+}
+
+.text-light-gray {
+  color: $gray-400;
+}
+
+input, button {
+  border-radius: 3px !important;
+}
+
+.btn-no-text {
+  padding: 8px 10px;
+  line-height: 1em;
+  box-sizing: content-box;
+  height: 1em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 1em;
+  align-items: center;
+}
+
+.btn-block {
+  width: 100%;
+  flex-shrink: 1;
+  font-size: 28px;
+}

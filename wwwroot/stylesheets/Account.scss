@@ -1,0 +1,34 @@
+@import "variables";
+.or {
+  padding: 24px 0;
+}
+
+.or-line {
+  text-align: center;
+  font-weight: $font-weight-bold;
+  border-top: 3px solid $light;
+}
+
+.or-or {
+  margin-top: -12px;
+  text-align: center;
+}
+
+.or-or span {
+  line-height: 22px;
+  font-size: 18px;
+  background-color: $dark;
+  color: $light;
+  font-weight: $font-weight-bold;
+  padding: 0 6px;
+}
+
+@import "mixins/breakpoints";
+@include media-breakpoint-up(md) {
+  @media (min-width: 600px) {
+    #form-wrapper {
+      max-width: 600px;
+      width: 100%;
+    }
+  } 
+}

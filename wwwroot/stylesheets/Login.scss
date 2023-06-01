@@ -1,0 +1,18 @@
+@import "variables";
+#body {
+  color: $light;
+}
+
+@import "mixins/breakpoints";
+@include media-breakpoint-up(lg){
+  #body {
+    margin-top: 0!important;
+  }
+}
+
+.create-btn {
+  padding: 15px 30px 15px 18px;
+  font-size: 28px !important;
+  font-weight: bold;
+}
+

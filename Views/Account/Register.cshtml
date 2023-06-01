@@ -1,0 +1,102 @@
+@model RegistrationViewModel
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/stylesheets/Account.css"/>
+    <link rel="stylesheet" href="~/stylesheets/Register.css"/>
+}
+
+<div id="body" class="container-fluid p-0">
+    <div class="row">
+        <div class="col-md-4 col-12">
+            <div class="image">
+                <div class="text">
+                    Creation starts here<br>
+                    Access 5,153,037 free, high-resolution photos you can't find anywhere else.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-12">
+            <div id="form-wrapper" class="container-fluid">
+                <div class="text-center">
+                    <h1 class="fw-bold mb-4" style="font-size: 35px">Join SeeSay</h1>
+                    <h2 class="mb-4 label-sm text-light-gray">Already have an account? <a asp-action="Login" class="d-inline text-primary">Login</a></h2>
+                </div>
+
+                <div id="external-login-providers-container" class="d-flex flex-column gap-2 mt-4">
+                    <a asp-action="ExternalLogin" asp-route-provider="Google" class="btn btn-danger d-flex justify-content-center align-items-center fw-bold" style="font-size: 18px">
+                        <i class="fa-brands fa-google me-3"></i>
+                        Join with Google
+                    </a>
+                    <a asp-action="ExternalLogin" asp-route-provider="GitHub" class="btn btn-secondary d-flex justify-content-center align-items-center fw-bold" style="font-size: 18px">
+                        <i class="fa-brands fa-github me-3"></i>
+                        Join with GitHub
+                    </a>
+                </div>
+                <div class="or">
+                    <div class="or-line"></div>
+                    <div class="or-or">
+                        <span>OR</span>
+                    </div>
+                </div>
+
+                <form method="POST" asp-action="Register">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row mb-1">
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-label" asp-for="FirstName"></label>
+                                <input asp-for="FirstName" class="form-control"/>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-label" asp-for="LastName"></label>
+                                <input asp-for="LastName" class="form-control"/>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" placeholder="example@mail.com"/>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="Username"></label>
+                            <input asp-for="Username" class="form-control"/>
+                            <span asp-validation-for="Username"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" placeholder="••••••••"/>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="ConfirmPassword"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="••••••••"/>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary text-nowrap fw-bold w-100" style="border-radius: 2px; padding: 7px 0;  font-size: 18px">
+                            Join
+                        </button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>

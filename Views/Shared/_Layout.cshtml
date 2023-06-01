@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/stylesheets/bootstrap.css"/>
+    <link rel="stylesheet" href="~/stylesheets/site.css"/>
+    <link rel="stylesheet" href="~/lib/jquery/dist/jquery.min.js"/>
+    <link rel="stylesheet" href="~/lib/slick-carousel/slick.min.css"/>
+    <link rel="stylesheet" href="~/lib/slick-carousel/slick-theme.min.css"/>
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+<header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" asp-controller="Image" asp-action="Home" style="display: flex; align-items: center;">
+            <img src="~/media/logo.png" class="img-fluid" alt="Logo">
+        </a>
+        <div class="container-fluid justify-content-end" style="padding: 32px">
+            <div class="row">
+                <div class="col">
+                    @if (User.Identity?.IsAuthenticated is true)
+                    {
+                        <a asp-controller="Account" asp-action="Logout">
+                            <i class="fa fa-sign-out"></i>
+                            Log out
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Register" class="me-4">
+                            Register
+                        </a>
+                        <a asp-controller="Account" asp-action="Login">
+                            Login
+                        </a>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</header>
+@RenderBody()
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/slick-carousel/slick.min.js"></script>
+<script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap@5.2.3",
+      "destination": "wwwroot\\lib\\bootstrap",
+      "files": [
+        "js/bootstrap.bundle.min.js"
+      ]
+    },
+    {
+      "library": "slick-carousel@1.8.1",
+      "destination": "wwwroot\\lib\\slick-carousel"
+    },
+    {
+      "library": "font-awesome@6.4.0",
+      "destination": "wwwroot\\lib\\font-awesome"
+    }
+  ]
+}
